@@ -22,9 +22,15 @@ import org.springframework.security.web.SecurityFilterChain;
  * app.security.enabled=true   -> JWT required, roles come from the "roles" claim
  * Use @PreAuthorize("hasRole('processor')") on controllers.
  */
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
 @Configuration
-@EnableMethodSecurity
 public class SecurityConfig {
+
+    @Configuration
+    @ConditionalOnProperty(name = "app.security.enabled", havingValue = "true")
+    @EnableMethodSecurity
+    public static class MethodSecurityConfig {}
 
     @Value("${app.security.enabled:false}")
     private boolean enabled;
