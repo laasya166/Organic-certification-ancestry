@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:3000"      # TODO(A): set the real demo origin; never use "*"
+            allowedMethods: [GET, POST, PUT, DELETE, OPTIONS]
+            allowedHeaders: "*"
+      routes:
+        - id: auth
+          uri: lb://auth-service
+          predicates: [Path=/auth/**]
+        - id: lots
+          uri: lb://lot-ancestry-service
+          predicates: [Path=/lots/**, /blends/**]
+        - id: certificates
+          uri: lb://certificate-service
+          predicates: [Path=/certificates/**]
+        - id: validations
+          uri: lb://blend-validation-service
+          predicates: [Path=/validations/**]
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
