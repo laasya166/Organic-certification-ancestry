@@ -4,7 +4,7 @@ spring:
   application:
     name: lot-ancestry-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/ancestry_db
+    url: jdbc:postgresql://localhost:${DB_PORT:5438}/ancestry_db
     username: ancestry_user
     password: ${DB_PASSWORD:ancestry_pw}
   jpa:

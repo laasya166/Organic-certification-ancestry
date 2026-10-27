@@ -20,7 +20,7 @@ services:
     image: postgres:16
     container_name: soa-postgres
     ports:
-      - "5432:5432"
+      - "${DB_PORT:-5438}:5432"
     environment:
       POSTGRES_PASSWORD: postgres
     volumes:

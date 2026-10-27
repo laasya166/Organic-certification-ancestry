@@ -15,16 +15,20 @@ spring:
       routes:
         - id: auth
           uri: lb://auth-service
-          predicates: [Path=/auth/**]
+          predicates:
+            - Path=/auth/**
         - id: lots
           uri: lb://lot-ancestry-service
-          predicates: [Path=/lots/**, /blends/**]
+          predicates:
+            - Path=/lots/**, /blends/**
         - id: certificates
           uri: lb://certificate-service
-          predicates: [Path=/certificates/**]
+          predicates:
+            - Path=/certificates/**
         - id: validations
           uri: lb://blend-validation-service
-          predicates: [Path=/validations/**]
+          predicates:
+            - Path=/validations/**
 eureka:
   client:
     service-url:

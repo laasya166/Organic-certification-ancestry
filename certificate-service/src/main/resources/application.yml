@@ -4,7 +4,7 @@ spring:
   application:
     name: certificate-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/certificate_db
+    url: jdbc:postgresql://localhost:${DB_PORT:5438}/certificate_db
     username: certificate_user
     password: ${DB_PASSWORD:certificate_pw}
   jpa:

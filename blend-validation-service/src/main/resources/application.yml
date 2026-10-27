@@ -4,7 +4,7 @@ spring:
   application:
     name: blend-validation-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/validation_db
+    url: jdbc:postgresql://localhost:${DB_PORT:5438}/validation_db
     username: validation_user
     password: ${DB_PASSWORD:validation_pw}
   jpa:
